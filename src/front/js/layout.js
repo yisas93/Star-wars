@@ -1,14 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
+import "./pages/styles.css"
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { Home } from "./pages/home.jsx";
+import { Films } from "./pages/films.jsx"
+import { Species } from "./pages/species.jsx";
+import { Starships } from "./pages/starships.jsx";
+import { Single } from "./pages/single.jsx";
+import { Planets } from "./pages/planets.jsx"
 import injectContext from "./store/appContext";
-
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Footer } from "./component/footer";
+import { Characters } from "./pages/characters.jsx";
+import { PlanetDetail } from "./pages/planetDetail.jsx"
 
 //create your first component
 const Layout = () => {
@@ -17,14 +22,19 @@ const Layout = () => {
     const basename = process.env.BASENAME || "";
 
     return (
-        <div>
+        <div className="stars" >
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+                        <Route element={<Characters/>} path="/characters"/>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
+                        <Route element={<Starships />} path="/starships" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Planets />} path="/planets"  />
+                        <Route element={<PlanetDetail />} path="/planets/:planetId"  />
+                        <Route element={<Species />} path="/species" />
+                        <Route element={<Films />} path="/films"/>
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
